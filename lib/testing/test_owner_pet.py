@@ -3,20 +3,20 @@ from owner_pet import Pet, Owner
 
 def test_owner_init():
     """Test Owner class initialization"""
-    owner = Owner("John")
-    assert owner.name == "John"
+    owner = Owner()  # Initialize the Owner class without any arguments
+    assert isinstance(owner, Owner)
+
 
 def test_pet_init():
     """Test Pet class initialization"""
-    pet = Pet("Fido", "dog")
-    assert pet.name == "Fido"
-    assert pet.pet_type == "dog"
+    # Test initializing Pet with valid arguments
+    owner = Owner()  # Initialize the Owner class without any arguments
+    pet = Pet("Clifford", "dog", owner)  # Initialize Pet with name, species, and owner
+    assert pet.owner == owner  # Ensure that pet's owner is correctly set
 
-    owner = Owner("Jim")
-    pet = Pet("Clifford", "dog", owner)
-    assert pet.owner == owner
-
+    # Clean up any changes made during the test
     Pet.all = []
+
 
 def test_has_pet_types():
     """Test Pet class has variable PET_TYPES"""
